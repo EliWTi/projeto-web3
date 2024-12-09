@@ -1,102 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dulce Paladar - Home</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="icon" href="img/iconf.png"/>
-    <style>
-        body {
-            background-image: url('img/fundo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            margin: 0;
-            height: 100vh;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="icon" href="img/iconf.png"/>
 
-        .navbar {
-            background-color: rgb(176, 154, 143);
-        }
+        <title>Dulce Paladar - Home</title>
 
-        .navbar-brand, .nav-link {
-            color: white !important;
-        }
+    </head>
 
-        .content {
-            background-color: rgba(227, 201, 187, 0.8);
-            color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin: 50px auto;
-            max-width: 600px;
-        }
+    <body>
 
-        h1, p {
-            margin: 0 0 20px;
-        }
-    </style>
-</head>
-<body>
+        <nav class="bg-padrao">
+            <div class="nav-logo">
+                <img src="img/logo.png" alt="alt"/>
+            </div>
 
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-
-        <a class="navbar-brand" href="index.html">
-            <img src="img/logo.png" alt="Logo" style="width: 40px; height: auto;"> Dulce Paladar
-        </a>
-   
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-  
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cadastro.html">Cadastro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="menu.html">Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="sobre.html">Sobre</a>
-                </li>
+            <ul class="nav-menu">
+                <li><a href="">Home</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Menu</a></li>
+                <li><a href="">Contact</a></li>
             </ul>
-            
-            <ul class="navbar-nav ms-auto">
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="pedidos.jsp">
-                        <img src="img/compras.png" alt="Carrinho" style="width: 30px; height: auto;">
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="perfil.jsp">
-                        <img src="img/perfil.png" alt="Perfil" style="width: 30px; height: auto;">
-                    </a>
-                </li>
-            </ul>
+
+            <div>
+                <img class="icon-perfil invert-icon" src="img/perfil.png" alt="alt"/>
+                <a class="botao-reservar" href="url">Reservar Mesa</a>
+            </div>
+
+
+        </nav>
+
+        <div id="carouselExample" class="carousel slide">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/slide1.jpg" class="carrossel-tamanho" alt="...">
+                    <div class="carousel-caption d-none d-md-block"></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/slide2.jpg" class="carrossel-tamanho" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/slide3.jpg" class="carrossel-tamanho" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-    </div>
-</nav>
 
-<div class="container mt-5">
-    <div class="content">
-        <h1>Bem-vindo à Dulce Paladar!</h1>
-        <p>Escolha uma opção no menu para continuar. Logo acrescentaremos mais informações aqui.</p>
-    </div>
-</div>
+        <section class="section-sobre">
 
-<script src="js/bootstrap.bundle.min.js"></script>
+            <div class="div-text">
+                <h6>Sobre</h6>
+                <h2>Discover The Taste Of
+                    Real <span>Coffee With Friends.</span>
+                </h2>
+                <p>Lorem ipsum dolor sit amet consectetur. Est nascetur erat eget ornare eu eget in diam quis. Massa risus commodo turpis malesuada ante nullam hac sit. Blandit est morbi ornare donec. Molestie pellentesque amet ac vel neque purus. Facilisis fusce a volutpat maecenas gravida urna nibh eget id.</p>
+                <p>Pulvinar lacus volutpat netus pellentesque cursus hendrerit. Velit eleifend imperdiet pharetra urna urna nibh placerat. Mauris vulputate tempor eget in vitae.</p>
+            </div>
 
-</body>
+            <div class="div-img">
+                <img src="img/img-sobre.jpg" alt="alt"/>
+            </div>
+
+        </section>
+
+        <section class="section-team bg-padrao">
+            <div class="title">
+                <h6>Our SHOP Family</h6>
+                <h2>The Faces Behind the Flavors</h2>
+                <p>Lorem ipsum dolor sit amet consectetur. Pellentesque aliquet in risus<br>
+                    phasellus tellus non est.
+                </p>
+            </div>
+
+            <div class="box-cards">
+
+                <div class="card" style="width: 18rem;">
+                    <img src="img/barista1.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img src="img/barista2.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img src="img/chefe3.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img src="img/barista4.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </section>
+
+        <footer class="bg-padrao">
+
+            <div class="title-f">
+                <h2>Opening Hours</h2>
+            </div>
+
+            <div class="box-horarios">
+
+                <div class="horarios">
+                    <p>Segunda: 9:00 - 22:00</p>
+                    <p>Terça: 9:00 - 22:00</p>
+                    <p>Quarta: 9:00 - 22:00</p>
+                </div>
+
+                <div class="horarios">
+                    <p>Quinta: 9:00 - 22:00</p>
+                    <p>Sexta: 9:00 - 22:00</p>
+                    <p>Sábado: 9:00 - 14:00</p>
+                </div>
+
+            </div>
+
+            <div class="horarios-domingo">
+                <p>Domingo: Fechado</p>
+            </div>
+
+            <p class="direitos-reservados">@2024 All Rights Copyright <span>Coffee Shop</span> . Design & Developed By UIPARADOX</p>
+
+        </footer>
+
+
+        <script src="js/bootstrap.bundle.min.js"></script> 
+    </body>
+
 </html>
