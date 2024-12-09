@@ -17,13 +17,13 @@ CREATE TABLE `usuarios` (
   `cidade` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Criando tabela de carões
+-- Criando tabela de cartoes
 CREATE TABLE `cartoes` (
   `idcartao` int NOT NULL AUTO_INCREMENT,
   `idusuario` int NOT NULL,
-  `numero_cartão` char(16) NOT NULL,
+  `numero_cartao` char(16) NOT NULL,
   `nome_titular` varchar(100) NOT NULL,
   `validade` char(5) NOT NULL,
   `cvv` char(3) NOT NULL,
@@ -31,10 +31,9 @@ CREATE TABLE `cartoes` (
   PRIMARY KEY (`idcartao`),
   KEY `fk_usuario_id_idx` (`idusuario`),
   CONSTRAINT `fk_usuario_id` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
-  -- Criando tabela de podrutos
+-- Criando tabela de produtos
 CREATE TABLE `produtos` (
   `idproduto` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
@@ -44,11 +43,11 @@ CREATE TABLE `produtos` (
   `imagem` varchar(255) NOT NULL,
   `categoria` varchar(30) NOT NULL,
   PRIMARY KEY (`idproduto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Criando tabela de pedidos
 CREATE TABLE `pedidos` (
-  `idpedido` int NOT NULL,
+  `idpedido` int NOT NULL AUTO_INCREMENT,
   `idusuario` int NOT NULL,
   `dataPedido` datetime NOT NULL,
   `status` enum('pendente','em preparo','pronto para retirada','entregue','cancelado') NOT NULL,
@@ -57,8 +56,7 @@ CREATE TABLE `pedidos` (
   PRIMARY KEY (`idpedido`),
   KEY `fk_usuarioId_pedido_idx` (`idusuario`),
   CONSTRAINT `fk_usuarioId_pedido` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Criando tabela de pedido x produto
 CREATE TABLE `pedido_produtos` (
@@ -72,4 +70,21 @@ CREATE TABLE `pedido_produtos` (
   KEY `fk_produto_id_idx` (`idproduto`),
   CONSTRAINT `fk_pedido_id` FOREIGN KEY (`idpedido`) REFERENCES `pedidos` (`idpedido`),
   CONSTRAINT `fk_produto_id` FOREIGN KEY (`idproduto`) REFERENCES `produtos` (`idproduto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+INSERT INTO usuarios (nome, email, nascimento, senha, celular, cep, rua, numero, bairro, cidade) 
+VALUES (
+    'Admin', 
+    'adm@dulcepaladar.com', 
+    '2000-01-01',
+    MD5('senha123'),
+    '11999999999', 
+    '12345678', 
+    'Rua dos Exemplos', 
+    '123', 
+    'Bairro Central', 
+    'Cidade Exemplo'
+);
