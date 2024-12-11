@@ -17,92 +17,123 @@ public class UsuarioDAO {
     public ArrayList<Usuario> getAllUsers() throws SQLException {
         ArrayList<Usuario> list = new ArrayList<>();
         String query = "SELECT * FROM usuarios;";
-        PreparedStatement prep = conn.prepareStatement(query);
-        ResultSet res = prep.executeQuery();
-
-        while (res.next()) {
-            Usuario user = new Usuario();
-            user.setId(res.getInt("id"));
-            user.setNome(res.getString("nome"));
-            user.setEmail(res.getString("email"));
-            user.setNascimento(res.getString("nascimento"));
-            user.setSenha(res.getString("senha"));
-
-            list.add(user);
-            System.out.println(user);
+        try (PreparedStatement prep = conn.prepareStatement(query)) {
+            ResultSet res = prep.executeQuery();
+            
+            while (res.next()) {
+                // Criando o usuário com todos os parâmetros do banco de dados
+                Usuario user = new Usuario(
+                        res.getString("nome"),
+                        res.getString("email"),
+                        res.getString("nascimento"),
+                        res.getString("senha"),
+                        res.getString("celular"),
+                        res.getString("cep"),
+                        res.getString("rua"),
+                        res.getString("numero"),
+                        res.getString("bairro"),
+                        res.getString("cidade")
+                );
+                user.setId(res.getInt("id"));
+                list.add(user);
+            }
         }
-
-        prep.close();
         return list;
     }
 
     public void setNewUser(Usuario user) throws SQLException {
-        String query = "INSERT INTO usuarios(nome, email, nascimento, senha) "
-                     + "VALUES(?, ?, ?, SHA1(?))";
-        PreparedStatement prep = conn.prepareStatement(query);
-        prep.setString(1, user.getNome());
-        prep.setString(2, user.getEmail());
-        prep.setString(3, user.getNascimento());
-        prep.setString(4, user.getSenha());
-        prep.execute();
-        prep.close();
+        String query = "INSERT INTO usuarios(nome, email, nascimento, senha, celular, cep, rua, numero, bairro, cidade) "
+                     + "VALUES(?, ?, ?, SHA1(?), ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setString(1, user.getNome());
+            prep.setString(2, user.getEmail());
+            prep.setString(3, user.getNascimento());
+            prep.setString(4, user.getSenha());
+            prep.setString(5, user.getCelular());
+            prep.setString(6, user.getCep());
+            prep.setString(7, user.getRua());
+            prep.setString(8, user.getNumero());
+            prep.setString(9, user.getBairro());
+            prep.setString(10, user.getCidade());
+            prep.execute();
+        }
     }
 
     public void deleteUser(int id) throws SQLException {
         String query = "DELETE FROM usuarios WHERE id = ?;";
-        PreparedStatement prep = conn.prepareStatement(query);
-        prep.setInt(1, id);
-        prep.execute();
-        prep.close();
+        try (PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setInt(1, id);
+            prep.execute();
+        }
     }
 
     public Usuario getOneUser(int id) throws SQLException {
         String query = "SELECT * FROM usuarios WHERE id = ?;";
-        PreparedStatement prep = conn.prepareStatement(query);
-        prep.setInt(1, id);
-        ResultSet res = prep.executeQuery();
-
-        Usuario user = new Usuario();
-        if (res.next()) {
-            user.setId(res.getInt("id"));
-            user.setNome(res.getString("nome"));
-            user.setEmail(res.getString("email"));
-            user.setNascimento(res.getString("nascimento"));
-            user.setSenha(res.getString("senha"));
+        Usuario user;
+        try (PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setInt(1, id);
+            ResultSet res = prep.executeQuery();
+            user = null;
+            if (res.next()) {
+                user = new Usuario(
+                        res.getString("nome"),
+                        res.getString("email"),
+                        res.getString("nascimento"),
+                        res.getString("senha"),
+                        res.getString("celular"),
+                        res.getString("cep"),
+                        res.getString("rua"),
+                        res.getString("numero"),
+                        res.getString("bairro"),
+                        res.getString("cidade")
+                );
+                user.setId(res.getInt("id"));
+            }
         }
-
-        prep.close();
         return user;
     }
 
     public Usuario getOneUserByEmail(String email) throws SQLException {
         String query = "SELECT * FROM usuarios WHERE email = ?;";
-        PreparedStatement prep = conn.prepareStatement(query);
-        prep.setString(1, email);
-        ResultSet res = prep.executeQuery();
-
-        Usuario user = new Usuario();
-        if (res.next()) {
-            user.setId(res.getInt("id"));
-            user.setNome(res.getString("nome"));
-            user.setEmail(res.getString("email"));
-            user.setNascimento(res.getString("nascimento"));
-            user.setSenha(res.getString("senha"));
+        Usuario user;
+        try (PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setString(1, email);
+            ResultSet res = prep.executeQuery();
+            user = null;
+            if (res.next()) {
+                user = new Usuario(
+                        res.getString("nome"),
+                        res.getString("email"),
+                        res.getString("nascimento"),
+                        res.getString("senha"),
+                        res.getString("celular"),
+                        res.getString("cep"),
+                        res.getString("rua"),
+                        res.getString("numero"),
+                        res.getString("bairro"),
+                        res.getString("cidade")
+                );
+                user.setId(res.getInt("id"));
+            }
         }
-
-        prep.close();
         return user;
     }
 
     public void updateUser(Usuario user) throws SQLException {
-        String query = "UPDATE usuarios SET nome = ?, email = ?, nascimento = ?, senha = SHA1(?) WHERE id = ?";
-        PreparedStatement prep = conn.prepareStatement(query);
-        prep.setString(1, user.getNome());
-        prep.setString(2, user.getEmail());
-        prep.setString(3, user.getNascimento());
-        prep.setString(4, user.getSenha());
-        prep.setInt(5, user.getId());
-        prep.execute();
-        prep.close();
+        String query = "UPDATE usuarios SET nome = ?, email = ?, nascimento = ?, senha = SHA1(?), celular = ?, cep = ?, rua = ?, numero = ?, bairro = ?, cidade = ? WHERE id = ?";
+        try (PreparedStatement prep = conn.prepareStatement(query)) {
+            prep.setString(1, user.getNome());
+            prep.setString(2, user.getEmail());
+            prep.setString(3, user.getNascimento());
+            prep.setString(4, user.getSenha());
+            prep.setString(5, user.getCelular());
+            prep.setString(6, user.getCep());
+            prep.setString(7, user.getRua());
+            prep.setString(8, user.getNumero());
+            prep.setString(9, user.getBairro());
+            prep.setString(10, user.getCidade());
+            prep.setInt(11, user.getId());
+            prep.execute();
+        }
     }
 }

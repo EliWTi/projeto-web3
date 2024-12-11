@@ -14,7 +14,7 @@ public class Conexao {
         conn = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/database_projeto" ,
                 "root" ,
-                "root"
+                "1234"
         
         );      
         
